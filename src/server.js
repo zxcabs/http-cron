@@ -68,3 +68,8 @@ http.createServer(app).listen(3434, (error) => {
 
     logger.info(`Server run on: ${3434}`);
 });
+
+process.on('SIGINT', function() {
+    logger.info('SIGINT');
+    process.exit();
+});

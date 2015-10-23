@@ -1,23 +1,19 @@
-FROM phusion/baseimage:0.9.17
+FROM alpine:3.2
 
-ADD ./build /build
+ENV NODE_VERSION 4.2.1
 
-RUN mkdir /app
-RUN mkdir /app/src
+ADD ./.babelrc /app/.babelrc
+ADD ./package.json /app/package.json
+ADD ./index.js /app/index.js
+ADD ./src /app/src
 
-ADD ./.babelrc      /app/
-ADD ./index.js      /app/
-ADD ./package.json  /app/
-ADD ./src           /app/src
-
-RUN /build/setup-repo.sh   && \
-	/build/base.sh         && \
-	/build/node.sh         && \
-    /build/init.sh         && \
-    /build/services.sh     && \
-    /build/cleanup.sh
-
-EXPOSE 3434
+RUN apk \
+      	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main \
+       	--update add \
+       	nodejs=${NODE_VERSION}-r0 \
+    && cd /app && npm run init \
+    && rm -rf /var/cache/apk/*
 
 WORKDIR /app
-ENTRYPOINT npm run prod
+
+ENTRYPOINT ["npm", "run", "prod"]

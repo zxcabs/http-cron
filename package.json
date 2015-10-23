@@ -1,6 +1,6 @@
 {
-  "name": "http-delay-queue",
-  "version": "0.0.0",
+  "name": "http-cron",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "init": "npm install",
     "prod": "NODE_ENV=production node -r babel/register index.js"
   },
-  "author": "",
+  "author": "Evgeny Reznichenko <kusakyky@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.23",

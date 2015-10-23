@@ -1,18 +1,21 @@
-# Web client
+# HTTP CRON
 
+Делает отложенные запросы на переданные урл 
 
 ## Docker
 
 ### Build
 
 ```
-docker build -t http-delay-queue .
+docker build -t http-cron .
 ```
 
 ### Start
 
 ```
-run --rm -it -p 3434:3434           \
-    --link ihavenever-db:redis            \
-    http-delay-queue
+run --rm -it -p <port>:3434                  \
+    --link <redis>:redis                     \
+    --add-host=<host callback>:<ip callback> \
+    --name="http-cron-process"               \
+    http-cron
 ```
