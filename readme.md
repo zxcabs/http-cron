@@ -13,7 +13,7 @@ docker build -t http-cron .
 ### Start
 
 ```
-run --rm -it -p <port>:3434                  \
+docker run --rm -it -p <port>:3434           \
     --link <redis>:redis                     \
     --add-host=<host callback>:<ip callback> \
     --name="http-cron-process"               \
