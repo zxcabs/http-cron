@@ -7,7 +7,7 @@
 ### Build
 
 ```
-docker build -t http-cron .
+docker build -t http-cron -f dockerfiles/Dockerfile .
 ```
 
 ### Start
